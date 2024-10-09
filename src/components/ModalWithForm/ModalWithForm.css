@@ -8,6 +8,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+}
+
+.modal__opened {
+  visibility: visible;
 }
 
 .modal__close {
@@ -18,7 +23,7 @@
 .modal__title {
   margin: 0;
 }
-.modal__conatiner {
+.modal__container {
   background-color: white;
   position: relative;
   padding: 28px 28px 36px;
