@@ -1,0 +1,39 @@
+.modal__container_type_image {
+  padding: 0px;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.modal__image {
+  width: 498px;
+  height: 500px;
+  top: 106px;
+  left: 471px;
+  gap: 0px;
+  opacity: 0px;
+  object-fit: contain;
+}
+
+.modal__caption {
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  width: 36px;
+  height: 24px;
+  margin: 0;
+}
+
+.modal__weather {
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  margin: 12px 0px 0px;
+}
+
+.modal__footer {
+  padding: 20px 32px 32px;
+}
