@@ -43,7 +43,7 @@ function App() {
       <ModalWithForm
         title="New Garment"
         buttonText="Add garment"
-        isOpen={activeModal}
+        isOpen={activeModal === "add-garment"}
         closeActiveModal={closeActiveModal}
         className="modal__container"
       >
@@ -57,17 +57,16 @@ function App() {
           />
         </label>
 
-        <>
-          <label htmlFor="imgeUrl" className="modal__label">
-            Image
-            <input
-              type="url"
-              className="modal__input"
-              id="imgeUrl"
-              placeholder="imge Url"
-            />
-          </label>
-        </>
+        <label htmlFor="imgeUrl" className="modal__label">
+          Image
+          <input
+            type="url"
+            className="modal__input"
+            id="imgeUrl"
+            placeholder="imge Url"
+          />
+        </label>
+
         <fieldset className="modal__radio-fieldset">
           <legend className="modal__legend">Select the weather type:</legend>
           <section className="modal__radio-buttons">
