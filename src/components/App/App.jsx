@@ -4,9 +4,9 @@ import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
+import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
@@ -65,7 +65,11 @@ function App() {
                 />
               }
             ></Route>
-            <Route path="/profile" element={<p>Profile</p>}></Route>
+            <Route
+              path="/profile"
+              element={Profile}
+              handleCardClick={handleCardClick}
+            ></Route>
           </Routes>
         </div>
 
