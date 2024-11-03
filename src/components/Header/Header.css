@@ -40,3 +40,8 @@
   line-height: 24.8px;
   text-align: left;
 }
+
+.header__link {
+  text-decoration: none;
+  color: #000;
+}

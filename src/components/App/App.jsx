@@ -10,6 +10,7 @@ import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import { getItems, addItems, deleteItems } from "../../utils/api";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
@@ -19,6 +20,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -32,12 +34,21 @@ function App() {
   };
 
   const handleToggleSwitchChange = () => {
-    if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
-    if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
+    setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
 
-  const onAddItem = (value) => {
-    console.log(value);
+  const onAddItem = (item) => {
+    addItems(item)
+      .then((newItem) => setClothingItems([newItem, ...setClothingItems]))
+      .catch(console.error);
+  };
+
+  const handleDeleteItem = (id) => {
+    deleteItems(id).then(() => {
+      setClothingItems((items) => items.filter((item) => item.id !== id)).catch(
+        console.error
+      );
+    });
   };
 
   useEffect(() => {
@@ -48,6 +59,13 @@ function App() {
       })
       .catch(console.error);
   }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((data) => setClothingItems(data))
+      .catch(console.error);
+  }, []);
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -62,13 +80,22 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  handleDeleteItem={handleDeleteItem}
                 />
               }
             ></Route>
             <Route
               path="/profile"
-              element={Profile}
-              handleCardClick={handleCardClick}
+              element={
+                <Profile
+                  handleCardClick={handleCardClick}
+                  closeActiveModal={closeActiveModal}
+                  clothingItems={clothingItems}
+                  onAddItem={onAddItem}
+                  handleAddClick={handleAddClick}
+                />
+              }
             ></Route>
           </Routes>
         </div>
