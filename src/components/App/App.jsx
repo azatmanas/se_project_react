@@ -11,6 +11,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, addItems, deleteItems } from "../../utils/api";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
@@ -81,7 +82,6 @@ function App() {
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
-                  handleDeleteItem={handleDeleteItem}
                 />
               }
             ></Route>
@@ -89,7 +89,7 @@ function App() {
               path="/profile"
               element={
                 <Profile
-                  handleCardClick={handleCardClick}
+                  onCardClick={handleCardClick}
                   closeActiveModal={closeActiveModal}
                   clothingItems={clothingItems}
                   onAddItem={onAddItem}
@@ -102,8 +102,15 @@ function App() {
 
         <ItemModal
           activeModal={activeModal}
-          selectedCard={selectedCard}
+          card={selectedCard}
           closeActiveModal={closeActiveModal}
+          onDelete={handleDeleteItem}
+        />
+        <ConfirmationModal
+          activeModal={activeModal}
+          closeActiveModal={closeActiveModal}
+          handleDeleteItem={handleDeleteItem}
+          selectedCard={selectedCard}
         />
         <Footer />
         <AddItemModal

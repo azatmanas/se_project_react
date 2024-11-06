@@ -21,6 +21,7 @@ export const addItems = ({ name, imageUrl, weather }) => {
 };
 
 export const deleteItems = (id) => {
+  console.log("Azaaaaat");
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
   }).then((res) => {

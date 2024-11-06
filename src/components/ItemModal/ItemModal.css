@@ -7,11 +7,23 @@
 .modal__image {
   width: 498px;
   height: 500px;
-  top: 106px;
-  left: 471px;
+  /* top: 106px;
+  left: 471px; */
   gap: 0px;
   opacity: 0px;
   object-fit: contain;
+}
+
+.modal__close {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  border: none;
+  cursor: pointer;
 }
 
 .modal__caption {
