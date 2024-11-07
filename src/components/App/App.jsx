@@ -44,12 +44,17 @@ function App() {
       .catch(console.error);
   };
 
-  const handleDeleteItem = (id) => {
-    deleteItems(id).then(() => {
-      setClothingItems((items) => items.filter((item) => item.id !== id)).catch(
-        console.error
-      );
-    });
+  const handleDeleteCardClick = (card) => {
+    setSelectedCard(card);
+    setActiveModal("delete-confirmation");
+  };
+
+  const handleDeleteCard = (id) => {
+    deleteItems(id)
+      .then(() => {
+        setClothingItems((items) => items.filter((item) => item.id !== id));
+      })
+      .catch(console.error);
   };
 
   useEffect(() => {
@@ -101,15 +106,15 @@ function App() {
         </div>
 
         <ItemModal
-          activeModal={activeModal}
-          card={selectedCard}
+          isOpen={activeModal === "preview"}
           closeActiveModal={closeActiveModal}
-          onDelete={handleDeleteItem}
+          card={selectedCard}
+          onDelete={handleDeleteCardClick}
         />
         <ConfirmationModal
-          activeModal={activeModal}
+          isOpen={activeModal === "delete-confirmation"}
           closeActiveModal={closeActiveModal}
-          handleDeleteItem={handleDeleteItem}
+          handleDeleteCard={handleDeleteCard}
           selectedCard={selectedCard}
         />
         <Footer />

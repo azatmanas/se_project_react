@@ -1,8 +1,8 @@
 import "./ItemModal.css";
 import closeIcon from "../../assets/closeIcon.svg";
-function ItemModal({ activeModal, closeActiveModal, card, onDelete }) {
+function ItemModal({ isOpen, closeActiveModal, card, onDelete }) {
   return (
-    <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
+    <div className={`modal ${isOpen && "modal_opened"}`}>
       <div className="modal__container modal__container_type_image">
         <button
           onClick={closeActiveModal}
@@ -21,7 +21,7 @@ function ItemModal({ activeModal, closeActiveModal, card, onDelete }) {
           <h2 className="modal__caption">{card.name}</h2>
           <p className="modal__weather">Weather: {card.weather}</p>
         </div>
-        <button onClick={() => onDelete(card)} className="modal__delete">
+        <button onClick={() => onDelete(card._id)} className="modal__delete">
           Delete
         </button>
       </div>

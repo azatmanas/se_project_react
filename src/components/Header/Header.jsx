@@ -1,6 +1,6 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.png";
+import avatar from "../../assets/avatar1.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 
@@ -13,7 +13,7 @@ function Header({ handleAddClick, weatherData }) {
     <header className="header">
       <div className="header__logo">
         <Link to="/">
-          <img className="header__logo" src={logo} alt="logo" />
+          <img className="header__logo" src={logo} alt="WTWRlogo" />
         </Link>
       </div>
       <p className="header__date">

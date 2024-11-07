@@ -1,0 +1,42 @@
+.modal__content-container {
+  align-items: center;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  display: flex;
+  font-family: Cabinet Grotesk;
+  opacity: 0px;
+  position: relative;
+  width: 670px;
+  height: 280px;
+}
+
+.modal__content-text {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.modal__content-delete {
+  border: none;
+  background-color: #ffffff;
+  color: #ff4d00;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.modal__content-cancel {
+  background-color: #ffffff;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+}

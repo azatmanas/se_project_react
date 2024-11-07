@@ -1,4 +1,20 @@
 .sidebar {
   display: flex;
-  gap: 116px;
+  flex-direction: row;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+  margin-right: 16px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.sidebar__username {
+  width: 157px;
+  height: 25px;
+  font-weight: 700;
+  line-height: 24.8px;
+  size: 20px;
 }

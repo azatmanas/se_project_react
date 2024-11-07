@@ -1,6 +1,5 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard.jsx";
-// import { defaultClothingItems } from "../../utils/constants.js";
 import "../Main/Main.css";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext.js";
