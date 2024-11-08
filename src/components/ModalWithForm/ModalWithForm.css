@@ -52,18 +52,6 @@
   font-weight: 700;
 }
 
-/* .modal__close {
-  position: absolute;
-  top: 20px;
-  right: 28px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  width: 20px;
-  height: 20px;
-} */
-
 .modal__form {
   display: flex;
   flex-direction: column;
