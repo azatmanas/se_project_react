@@ -31,7 +31,7 @@ function App() {
     setActiveModal("add-garment");
   };
   const closeActiveModal = () => {
-    setActiveModal();
+    setActiveModal("");
   };
 
   const handleToggleSwitchChange = () => {
@@ -52,7 +52,8 @@ function App() {
   const handleDeleteCard = (id) => {
     deleteItems(id)
       .then(() => {
-        setClothingItems((items) => items.filter((item) => item.id !== id));
+        setClothingItems((items) => items.filter((item) => item._id !== id));
+        closeActiveModal();
       })
       .catch(console.error);
   };

@@ -15,11 +15,6 @@
   visibility: visible;
 }
 
-.modal__close {
-  position: absolute;
-  top: 20px;
-  right: 28px;
-}
 .modal__title {
   font-family: Cabinet Grotesk;
   font-size: 16px;
@@ -31,14 +26,43 @@
 }
 .modal__container {
   background-color: #fff;
-  position: relative;
   padding: 28px 28px 36px;
   max-width: 498px;
   box-sizing: border-box;
   width: 100%;
   border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.3);
+  position: relative;
 }
+
+.modal__content_type_image {
+  max-width: 498px;
+  height: 610px;
+  border-radius: 15px;
+  background-color: white;
+  padding: 0;
+}
+
+.modal__image {
+  max-width: 498px;
+  height: 498px;
+  border-radius: 15px;
+  object-fit: cover;
+  object-position: center;
+  font-weight: 700;
+}
+
+/* .modal__close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+} */
 
 .modal__form {
   display: flex;
