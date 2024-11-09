@@ -38,13 +38,16 @@ function App() {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
 
+  const [isLoading, setIsLoading] = React.useState(false);
   const onAddItem = (name, imageUrl, weather) => {
+    setIsLoading(true);
     addItems({ name, imageUrl, weather })
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => isLoading(false));
   };
 
   const handleDeleteCardClick = (card) => {
@@ -75,6 +78,19 @@ function App() {
       .then((data) => setClothingItems(data))
       .catch(console.error);
   }, []);
+
+  useEffect(() => {
+    if (!activeModal) return;
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+    document.addEventListener("keydown", handleEscClose);
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   return (
     <div className="page">
@@ -126,6 +142,7 @@ function App() {
           isOpen={activeModal === "add-garment"}
           closeActiveModal={closeActiveModal}
           onAddItem={onAddItem}
+          isLoading={isLoading}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
