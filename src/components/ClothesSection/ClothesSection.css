@@ -7,6 +7,11 @@
   border: none;
   background-color: transparent;
   color: rgba(0, 0, 0, 0.6);
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.8px;
+  text-align: left;
 }
 
 .clothes__section_items {
@@ -16,4 +21,11 @@
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.clothes__section_title {
+  height: 25px;
+  font-weight: 700;
+  line-height: 24.8px;
+  text-align: left;
 }

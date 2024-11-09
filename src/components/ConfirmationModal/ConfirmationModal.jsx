@@ -1,4 +1,5 @@
 import "./ConfirmationModal.css";
+import closeIcon from "../../assets/closeIcon.svg";
 
 function ConfirmationModal({
   closeActiveModal,
@@ -37,6 +38,7 @@ function ConfirmationModal({
           onClick={closeActiveModal}
           type="button"
           className="modal__content-cancel"
+          src={closeIcon}
         >
           Cancel
         </button>

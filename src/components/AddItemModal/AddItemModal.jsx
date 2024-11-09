@@ -3,20 +3,24 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./AddItemModal.css";
 const AddItemModal = ({ closeActiveModal, isOpen, onAddItem }) => {
   const [name, setName] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [weather, setWeather] = useState("");
+
   const handleNameChange = (e) => {
-    console.log(e.target.value);
     setName(e.target.value);
   };
 
-  const [imageUrl, setImageUrl] = useState("");
-  const handlUrlChange = (e) => {
-    console.log(e.target.value);
+  const handleUrlChange = (e) => {
     setImageUrl(e.target.value);
+  };
+
+  const handleWeatherChange = (e) => {
+    setWeather(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, imageUrl });
+    onAddItem(name, imageUrl, weather);
   };
   return (
     <ModalWithForm
@@ -47,7 +51,7 @@ const AddItemModal = ({ closeActiveModal, isOpen, onAddItem }) => {
           id="imgeUrl"
           placeholder="imge Url"
           value={imageUrl}
-          onChange={handlUrlChange}
+          onChange={handleUrlChange}
         />
       </label>
 
@@ -60,6 +64,8 @@ const AddItemModal = ({ closeActiveModal, isOpen, onAddItem }) => {
               type="radio"
               className="modal__radio-input"
               name="weatherType"
+              value="hot"
+              onChange={handleWeatherChange}
             />
             Hot
           </label>
@@ -72,6 +78,8 @@ const AddItemModal = ({ closeActiveModal, isOpen, onAddItem }) => {
               type="radio"
               className="modal__radio-input"
               name="weatherType"
+              value="warm"
+              onChange={handleWeatherChange}
             />
             Warm
           </label>
@@ -84,6 +92,8 @@ const AddItemModal = ({ closeActiveModal, isOpen, onAddItem }) => {
               type="radio"
               className="modal__radio-input"
               name="weatherType"
+              value="cold"
+              onChange={handleWeatherChange}
             />
             Cold
           </label>

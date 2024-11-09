@@ -38,9 +38,12 @@ function App() {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
 
-  const onAddItem = (item) => {
-    addItems(item)
-      .then((newItem) => setClothingItems([newItem, ...setClothingItems]))
+  const onAddItem = (name, imageUrl, weather) => {
+    addItems({ name, imageUrl, weather })
+      .then((newItem) => {
+        setClothingItems([newItem, ...clothingItems]);
+        closeActiveModal();
+      })
       .catch(console.error);
   };
 
@@ -122,7 +125,6 @@ function App() {
         <AddItemModal
           isOpen={activeModal === "add-garment"}
           closeActiveModal={closeActiveModal}
-          activeModal={activeModal}
           onAddItem={onAddItem}
         />
       </CurrentTemperatureUnitContext.Provider>
