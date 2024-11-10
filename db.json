@@ -107,6 +107,18 @@
       "imageUrl": "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQ4HiBlc5U8GWCP0PVHASJWX08MMnzdBZ2onaWDn7wXycdvBQNgkTBvj60S7GZdhBvIp_MXE1RQauvePm4",
       "weather": "cold",
       "_id": 19
+    },
+    {
+      "name": "Azat",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTufmY5Z9bfKrAlVgrhz_jkJF2z1xn8UGCeaaQY2RC8IIfhsuItFqj8slCWG55VAsRVOJN2CBRlBwmsHlE",
+      "weather": "warm",
+      "_id": 20
+    },
+    {
+      "name": "Azat",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTufmY5Z9bfKrAlVgrhz_jkJF2z1xn8UGCeaaQY2RC8IIfhsuItFqj8slCWG55VAsRVOJN2CBRlBwmsHlE",
+      "weather": "hot",
+      "_id": 21
     }
   ]
 }

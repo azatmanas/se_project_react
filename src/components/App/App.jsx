@@ -22,6 +22,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -38,7 +39,6 @@ function App() {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
 
-  const [isLoading, setIsLoading] = React.useState(false);
   const onAddItem = (name, imageUrl, weather) => {
     setIsLoading(true);
     addItems({ name, imageUrl, weather })
@@ -47,7 +47,7 @@ function App() {
         closeActiveModal();
       })
       .catch(console.error)
-      .finally(() => isLoading(false));
+      .finally(() => setIsLoading(false));
   };
 
   const handleDeleteCardClick = (card) => {
