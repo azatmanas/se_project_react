@@ -119,6 +119,17 @@
       "imageUrl": "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTufmY5Z9bfKrAlVgrhz_jkJF2z1xn8UGCeaaQY2RC8IIfhsuItFqj8slCWG55VAsRVOJN2CBRlBwmsHlE",
       "weather": "hot",
       "_id": 21
+    },
+    {
+      "name": "",
+      "weather": "",
+      "_id": 22
+    },
+    {
+      "name": "",
+      "imageUrl": "",
+      "weather": "hot",
+      "_id": 23
     }
   ]
 }
