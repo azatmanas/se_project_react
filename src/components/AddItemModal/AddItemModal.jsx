@@ -1,6 +1,6 @@
 import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useForm } from "../../useForm";
+import { useForm } from "../../hooks/useForm";
 import "./AddItemModal.css";
 const AddItemModal = ({ closeActiveModal, isOpen, onAddItem, isLoading }) => {
   const [values, handleChange] = useForm({
