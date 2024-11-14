@@ -1,6 +1,6 @@
 import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useForm } from "../../utils/useForm";
+import { useForm } from "../../../useForm";
 import "./AddItemModal.css";
 const AddItemModal = ({ closeActiveModal, isOpen, onAddItem, isLoading }) => {
   const [values, handleChange, resetForm] = useForm({
@@ -9,22 +9,13 @@ const AddItemModal = ({ closeActiveModal, isOpen, onAddItem, isLoading }) => {
     weather: "",
   });
 
-  // const handleNameChange = (e) => {
-  //   setName(e.target.value);
-  // };
-
-  // const handleUrlChange = (e) => {
-  //   setImageUrl(e.target.value);
-  // };
-
-  // const handleWeatherChange = (e) => {
-  //   setWeather(e.target.value);
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem(values.name, values.imageUrl, values.weather);
-    resetForm();
+    onAddItem(values.name, values.imageUrl, values.weather)
+      .then(() => {
+        resetForm();
+      })
+      .catch(console.error);
   };
   return (
     <ModalWithForm

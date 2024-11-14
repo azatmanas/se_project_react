@@ -1,9 +1,9 @@
 const baseUrl = "http://localhost:3001";
 
-function checkResponse(res) {
+export const checkResponse = (res) => {
   if (!res.ok) throw new Error(`Error: ${res.status}`);
   return res.json();
-}
+};
 
 export const getItems = () => {
   return fetch(`${baseUrl}/items`).then(checkResponse);
