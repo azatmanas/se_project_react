@@ -39,12 +39,13 @@ function App() {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
 
-  const onAddItem = (name, imageUrl, weather) => {
+  const onAddItem = (name, imageUrl, weather, restForm) => {
     setIsLoading(true);
     addItems({ name, imageUrl, weather })
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
+        restForm();
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));

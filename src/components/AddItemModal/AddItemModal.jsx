@@ -1,9 +1,9 @@
 import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useForm } from "../../../useForm";
+import { useForm } from "../../useForm";
 import "./AddItemModal.css";
 const AddItemModal = ({ closeActiveModal, isOpen, onAddItem, isLoading }) => {
-  const [values, handleChange, resetForm] = useForm({
+  const [values, handleChange] = useForm({
     name: "",
     imageUrl: "",
     weather: "",
@@ -11,11 +11,7 @@ const AddItemModal = ({ closeActiveModal, isOpen, onAddItem, isLoading }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem(values.name, values.imageUrl, values.weather)
-      .then(() => {
-        resetForm();
-      })
-      .catch(console.error);
+    onAddItem(values.name, values.imageUrl, values.weather);
   };
   return (
     <ModalWithForm
