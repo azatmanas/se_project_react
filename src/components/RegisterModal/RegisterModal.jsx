@@ -31,7 +31,7 @@ function RegisterModal() {
       <label htmlFor="name" className="modal__label">
         Name
         <input
-          type="text"
+          type="email"
           className="modal__input"
           name="name"
           id="name"
@@ -44,7 +44,7 @@ function RegisterModal() {
       <label htmlFor="imageUrl" className="modal__label">
         Image
         <input
-          type="url"
+          type="password"
           className="modal__input"
           id="imageUrl"
           name="imageUrl"
