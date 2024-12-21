@@ -75,6 +75,10 @@ function App() {
       .catch(console.error);
   };
 
+  const handleRegister = (data) => {
+    setIsLoading(data);
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
