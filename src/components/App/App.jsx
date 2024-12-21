@@ -12,6 +12,7 @@ import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitC
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, addItems, deleteItems } from "../../utils/api";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
@@ -33,6 +34,15 @@ function App() {
   };
   const closeActiveModal = () => {
     setActiveModal("");
+  };
+
+  const openRegister = () => {
+    setActiveModal();
+  };
+
+  const openLoginModal = (e) => {
+    e.preventDefault();
+    setActiveModal();
   };
 
   const handleToggleSwitchChange = () => {
@@ -138,6 +148,7 @@ function App() {
           handleDeleteCard={handleDeleteCard}
           selectedCard={selectedCard}
         />
+        <RegisterModal closeActiveModal={closeActiveModal} />
         <Footer />
         <AddItemModal
           isOpen={activeModal === "add-garment"}

@@ -1,11 +1,18 @@
 import { useState } from "react";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal() {
+function RegisterModal({
+  closeActiveModal,
+  isOpen,
+  isLoading,
+  openLoginModal,
+  openRegister,
+}) {
   const { data, setData } = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    avatar: "",
   });
   function handleChange(e) {
     const { name, value } = e.target;
@@ -17,26 +24,52 @@ function RegisterModal() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    openRegister(data);
   }
 
   return (
     <ModalWithForm
       title="Sign in"
+      name="sign in"
       buttonText={isLoading ? "Saving..." : "Save"}
       isOpen={isOpen}
       closeActiveModal={closeActiveModal}
       className="modal__container"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
-        Name
+      <label htmlFor="email" className="modal__label">
+        Email
         <input
           type="email"
           className="modal__input"
+          name="email"
+          id="email"
+          value={data.email}
+          placeholder="email"
+          onChange={handleChange}
+        />
+      </label>
+
+      <label htmlFor="password" className="modal__label">
+        Password
+        <input
+          type="password"
+          name="password"
+          className="modal__input"
+          id="password"
+          value={data.password}
+          placeholder="password"
+          onChange={handleChange}
+        />
+      </label>
+      <label htmlFor="name" className="modal__label">
+        Name
+        <input
+          type="text"
           name="name"
+          className="modal__input"
           id="name"
           placeholder="Name"
-          value={values.name || ""}
           onChange={handleChange}
         />
       </label>
@@ -44,15 +77,18 @@ function RegisterModal() {
       <label htmlFor="imageUrl" className="modal__label">
         Image
         <input
-          type="password"
+          type="url"
+          name="imageUrl"
           className="modal__input"
           id="imageUrl"
-          name="imageUrl"
+          value={data.imageUrl}
           placeholder="imageUrl"
-          value={values.imageUrl || ""}
           onChange={handleChange}
         />
       </label>
+      <button className="modal__btn-login" onClick={openLoginModal}>
+        or Log in
+      </button>
     </ModalWithForm>
   );
 }
