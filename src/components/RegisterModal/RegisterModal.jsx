@@ -12,7 +12,7 @@ function RegisterModal({
     name: "",
     email: "",
     password: "",
-    avatar: "",
+    imageUrl: "",
   });
   function handleChange(e) {
     const { name, value } = e.target;
@@ -41,9 +41,9 @@ function RegisterModal({
         Email
         <input
           type="email"
-          className="modal__input"
           name="email"
           id="email"
+          className="modal__input"
           value={data.email}
           placeholder="email"
           onChange={handleChange}
@@ -55,8 +55,8 @@ function RegisterModal({
         <input
           type="password"
           name="password"
-          className="modal__input"
           id="password"
+          className="modal__input"
           value={data.password}
           placeholder="password"
           onChange={handleChange}
