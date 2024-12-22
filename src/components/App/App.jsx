@@ -37,12 +37,12 @@ function App() {
   };
 
   const openRegister = () => {
-    setActiveModal();
+    setActiveModal("register");
   };
 
   const openLoginModal = (e) => {
     e.preventDefault();
-    setActiveModal();
+    setActiveModal("login");
   };
 
   const handleToggleSwitchChange = () => {
@@ -152,7 +152,13 @@ function App() {
           handleDeleteCard={handleDeleteCard}
           selectedCard={selectedCard}
         />
-        <RegisterModal closeActiveModal={closeActiveModal} />
+        <RegisterModal
+          closeActiveModal={closeActiveModal}
+          isOpen={activeModal === "register"}
+          isLoading={isLoading}
+          openRegister={handleRegister}
+          openLoginModal={openLoginModal}
+        />
         <Footer />
         <AddItemModal
           isOpen={activeModal === "add-garment"}

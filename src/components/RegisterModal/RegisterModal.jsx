@@ -1,10 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function RegisterModal({
   closeActiveModal,
   isOpen,
-  isLoading,
   openLoginModal,
   openRegister,
 }) {
@@ -29,9 +28,9 @@ function RegisterModal({
 
   return (
     <ModalWithForm
-      title="Sign in"
+      title="register"
       name="sign in"
-      buttonText={isLoading ? "Saving..." : "Save"}
+      buttonText="Register"
       isOpen={isOpen}
       closeActiveModal={closeActiveModal}
       className="modal__container"
@@ -67,9 +66,10 @@ function RegisterModal({
         <input
           type="text"
           name="name"
-          className="modal__input"
           id="name"
+          className="modal__input"
           placeholder="Name"
+          value={data.name}
           onChange={handleChange}
         />
       </label>
