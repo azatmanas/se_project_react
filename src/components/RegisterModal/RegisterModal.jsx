@@ -29,7 +29,7 @@ function RegisterModal({
   return (
     <ModalWithForm
       title="register"
-      name="sign in"
+      name="register"
       buttonText="Register"
       isOpen={isOpen}
       closeActiveModal={closeActiveModal}
@@ -43,7 +43,7 @@ function RegisterModal({
           name="email"
           id="email"
           className="modal__input"
-          value={data.email}
+          value={data.user.email}
           placeholder="email"
           onChange={handleChange}
         />
