@@ -7,7 +7,7 @@ function RegisterModal({
   openLoginModal,
   openRegister,
 }) {
-  const { data, setData } = useState({
+  const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
@@ -43,7 +43,7 @@ function RegisterModal({
           name="email"
           id="email"
           className="modal__input"
-          value={data.user.email}
+          value={data.email}
           placeholder="email"
           onChange={handleChange}
         />

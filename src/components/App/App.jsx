@@ -24,6 +24,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSignedIn, setIsSignedin] = useState(false);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -128,13 +129,15 @@ function App() {
             <Route
               path="/profile"
               element={
-                <Profile
-                  onCardClick={handleCardClick}
-                  closeActiveModal={closeActiveModal}
-                  clothingItems={clothingItems}
-                  onAddItem={onAddItem}
-                  handleAddClick={handleAddClick}
-                />
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <Profile
+                    onCardClick={handleCardClick}
+                    closeActiveModal={closeActiveModal}
+                    clothingItems={clothingItems}
+                    onAddItem={onAddItem}
+                    handleAddClick={handleAddClick}
+                  />
+                </ProtectedRoute>
               }
             ></Route>
           </Routes>
