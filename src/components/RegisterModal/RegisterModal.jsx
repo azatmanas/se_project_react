@@ -36,12 +36,12 @@ function RegisterModal({
       className="modal__container"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="register-email" className="modal__label">
         Email
         <input
           type="email"
           name="email"
-          id="email"
+          id="register-email"
           className="modal__input"
           value={data.email}
           placeholder="email"
@@ -49,24 +49,24 @@ function RegisterModal({
         />
       </label>
 
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="register-password" className="modal__label">
         Password
         <input
           type="password"
           name="password"
-          id="password"
+          id="register-password"
           className="modal__input"
           value={data.password}
           placeholder="password"
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="register-name" className="modal__label">
         Name
         <input
           type="text"
           name="name"
-          id="name"
+          id="register-name"
           className="modal__input"
           placeholder="Name"
           value={data.name}
@@ -74,13 +74,13 @@ function RegisterModal({
         />
       </label>
 
-      <label htmlFor="imageUrl" className="modal__label">
+      <label htmlFor="register-imageUrl" className="modal__label">
         Image
         <input
           type="url"
           name="imageUrl"
           className="modal__input"
-          id="imageUrl"
+          id="register-imageUrl"
           value={data.imageUrl}
           placeholder="imageUrl"
           onChange={handleChange}
