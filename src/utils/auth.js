@@ -10,7 +10,7 @@ export const register = ({ name, avatar, email, password }) => {
   });
 };
 
-export const authorization = ({ email, password }) => {
+export const login = ({ email, password }) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
@@ -19,5 +19,15 @@ export const authorization = ({ email, password }) => {
     body: JSON.stringify({ email, password }),
   }).then(() => {
     return res.ok ? res.json() : Promise.reject(`Error:${res.status}`);
+  });
+};
+
+export const getCurrentUserInfo = (token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
   });
 };
