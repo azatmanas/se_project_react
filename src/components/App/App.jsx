@@ -132,7 +132,12 @@ function App() {
       >
         <CurrentUserContext.Provider value={getCurrentUserInfo}>
           <div className="page__content">
-            <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+            <Header
+              handleAddClick={handleAddClick}
+              weatherData={weatherData}
+              handleRegister={handleRegister}
+              openLoginModal={openLoginModal}
+            />
             <Routes>
               <Route
                 path="/"
