@@ -13,6 +13,8 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, addItems, deleteItems } from "../../utils/api";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import { register } from "../../utils/auth";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
@@ -24,7 +26,8 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSignedIn, setIsSignedin] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -76,8 +79,21 @@ function App() {
       .catch(console.error);
   };
 
-  const handleRegister = (data) => {
-    setIsLoading(data);
+  const handleRegister = ({ name, avatar, email, password }) => {
+    setIsLoading(true);
+    register({ name, avatar, email, password })
+      .then(() => {
+        return Login({ email, password });
+      })
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        setIsSignedIn(true);
+        setActiveModal("");
+      })
+      .catch((err) => {
+        console.error("Registration/Login error:", err);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   useEffect(() => {

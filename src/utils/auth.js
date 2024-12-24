@@ -1,4 +1,4 @@
-export const signup = ({ name, avatar, email, password }) => {
+export const register = ({ name, avatar, email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
@@ -10,7 +10,7 @@ export const signup = ({ name, avatar, email, password }) => {
   });
 };
 
-export const signin = ({ email, password }) => {
+export const authorization = ({ email, password }) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
