@@ -1,3 +1,4 @@
+const BASE_URL = "http://localhost:3000";
 export const register = ({ name, avatar, email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
@@ -5,8 +6,8 @@ export const register = ({ name, avatar, email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then(() => {
-    return res.ok ? res.json() : Promise.reject(`Error:${res.status}`);
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
 };
 
@@ -17,8 +18,8 @@ export const login = ({ email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then(() => {
-    return res.ok ? res.json() : Promise.reject(`Error:${res.status}`);
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
 };
 
@@ -29,5 +30,7 @@ export const getCurrentUserInfo = (token) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
 };

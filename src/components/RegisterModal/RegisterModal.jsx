@@ -26,6 +26,23 @@ function RegisterModal({
     openRegister(data);
   }
 
+  const handleRegister = ({ name, avatar, email, password }) => {
+    setIsLoading(true);
+    register({ name, avatar, email, password })
+      .then(() => {
+        return Login({ email, password });
+      })
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        setIsSignedIn(true);
+        setActiveModal("");
+      })
+      .catch((err) => {
+        console.error("Registration/Login error:", err);
+      })
+      .finally(() => setIsLoading(false));
+  };
+
   return (
     <ModalWithForm
       title="register"

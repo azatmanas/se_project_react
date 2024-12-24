@@ -16,6 +16,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { getCurrentUserInfo, register } from "../../utils/auth";
 import CurrentUserContext from "../../context/CurrentUserContext";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
@@ -80,23 +81,6 @@ function App() {
       .catch(console.error);
   };
 
-  const handleRegister = ({ name, avatar, email, password }) => {
-    setIsLoading(true);
-    register({ name, avatar, email, password })
-      .then(() => {
-        return Login({ email, password });
-      })
-      .then((res) => {
-        localStorage.setItem("jwt", res.token);
-        setIsSignedIn(true);
-        setActiveModal("");
-      })
-      .catch((err) => {
-        console.error("Registration/Login error:", err);
-      })
-      .finally(() => setIsLoading(false));
-  };
-
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -135,8 +119,8 @@ function App() {
             <Header
               handleAddClick={handleAddClick}
               weatherData={weatherData}
-              handleRegister={handleRegister}
               openLoginModal={openLoginModal}
+              openRegister={openRegister}
             />
             <Routes>
               <Route
@@ -182,7 +166,6 @@ function App() {
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "register"}
             isLoading={isLoading}
-            openRegister={handleRegister}
             openLoginModal={openLoginModal}
           />
           <Footer />
@@ -192,6 +175,7 @@ function App() {
             onAddItem={onAddItem}
             isLoading={isLoading}
           />
+          <EditProfileModal />
         </CurrentUserContext.Provider>
       </CurrentTemperatureUnitContext.Provider>
     </div>
