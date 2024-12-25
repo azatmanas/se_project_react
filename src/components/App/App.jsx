@@ -30,6 +30,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState();
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -46,8 +47,7 @@ function App() {
     setActiveModal("register");
   };
 
-  const openLoginModal = (e) => {
-    e.preventDefault();
+  const openLoginModal = () => {
     setActiveModal("login");
   };
 
@@ -114,7 +114,7 @@ function App() {
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <CurrentUserContext.Provider value={getCurrentUserInfo}>
+        <CurrentUserContext.Provider value={currentUser}>
           <div className="page__content">
             <Header
               handleAddClick={handleAddClick}
@@ -175,7 +175,12 @@ function App() {
             onAddItem={onAddItem}
             isLoading={isLoading}
           />
-          <EditProfileModal />
+          <EditProfileModal
+            closeActiveModal={closeActiveModal}
+            isOpen={isOpen}
+            onUpdateProfile={onUpdateProfile}
+            isLoading={isLoading}
+          />
         </CurrentUserContext.Provider>
       </CurrentTemperatureUnitContext.Provider>
     </div>

@@ -12,6 +12,11 @@ function EditProfileModal({
   const [name, setName] = useState(currentUser?.name || "");
   const [avatar, setAvatar] = useState(currentUser?.avatar || "");
 
+  const updateProfile = (name, avatar) => {
+    if (isLoading) {
+      return;
+    }
+  };
   useEffect(() => {
     if (currentUser) {
       setName(currentUser.name);
@@ -42,7 +47,6 @@ function EditProfileModal({
           id="name"
           placeholder="Name"
           value={name}
-          onChange={handleChange}
         />
       </label>
 
@@ -55,7 +59,6 @@ function EditProfileModal({
           name="imageUrl"
           placeholder="imageUrl"
           value={imageUrl}
-          onChange={handleChange}
         />
       </label>
     </ModalWithForm>
