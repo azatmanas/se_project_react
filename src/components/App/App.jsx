@@ -14,7 +14,7 @@ import { getItems, addItems, deleteItems } from "../../utils/api";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import { getCurrentUserInfo, register } from "../../utils/auth";
+import { getCurrentUserInfo, login, register } from "../../utils/auth";
 import CurrentUserContext from "../../context/CurrentUserContext";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import LoginModal from "../LoginModal/LoginModal";
@@ -29,9 +29,8 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSignedIn, setIsSignedIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState({});
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -49,7 +48,6 @@ function App() {
   };
 
   const openLoginModal = () => {
-    console.log("Azaaat");
     setActiveModal("login");
   };
 
@@ -57,13 +55,25 @@ function App() {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
 
-  const onAddItem = (name, imageUrl, weather, restForm) => {
+  const onAddItem = (name, imageUrl, weather, resetForm) => {
     setIsLoading(true);
     addItems({ name, imageUrl, weather })
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
-        restForm();
+        resetForm();
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  };
+
+  const onLogin = ({ email, password }) => {
+    setIsLoading(true);
+    login({ email, password })
+      .then((data) => {
+        localStorage.setItem("jwt", data.token);
+        setIsLoggedIn(true);
+        closeActiveModal();
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));
@@ -111,12 +121,38 @@ function App() {
     };
   }, [activeModal]);
 
+  useEffect(() => {
+    getCurrentUserInfo().then(setCurrentUser).catch(console.error);
+  }, []);
+
+  const handleRegister = ({ name, avatar, email, password }) => {
+    setIsLoading(true);
+    register({ name, avatar, email, password })
+      .then(() => {
+        login({ name, email, password, avatar })
+          .then((res) => {
+            const token = res.token;
+            localStorage.setItem("jwt", token);
+            setIsLoggedIn(true);
+            return getCurrentUserInfo(token);
+          })
+          .then((userInfo) => {
+            setCurrentUser(userInfo);
+            setActiveModal("");
+          });
+      })
+      .catch((err) => {
+        console.error("Registration/Login error:", err);
+      })
+      .finally(() => setIsLoading(false));
+  };
+
   const updateProfile = (updateData) => {
     setIsLoading(true);
     onUpdateProfile(updateData)
       .then((updateUser) => {
         setCurrentUser(updateUser);
-        closeActiveModal(false);
+        closeActiveModal();
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));
@@ -205,6 +241,7 @@ function App() {
             isOpen={activeModal === "register"}
             isLoading={isLoading}
             openLoginModal={openLoginModal}
+            handleRegister={handleRegister}
           />
           <Footer />
           <AddItemModal
@@ -222,6 +259,7 @@ function App() {
           <LoginModal
             isOpen={activeModal === "login"}
             onClose={closeActiveModal}
+            onLogin={onLogin}
           />
         </CurrentUserContext.Provider>
       </CurrentTemperatureUnitContext.Provider>

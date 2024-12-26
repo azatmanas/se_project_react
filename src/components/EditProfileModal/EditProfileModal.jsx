@@ -14,8 +14,9 @@ function EditProfileModal({
 
   useEffect(() => {
     if (currentUser) {
-      setName(currentUser.name);
-      setAvatar(currentUser.avatar);
+      console.log(currentUser);
+      setName(currentUser.name || "");
+      setAvatar(currentUser.avatar || "");
     }
   }, [currentUser]);
 
@@ -53,7 +54,7 @@ function EditProfileModal({
           className="modal__input"
           id="avatar"
           name="avatar"
-          placeholder="imageUrl"
+          placeholder="avatar"
           value={avatar}
           onChange={(e) => setAvatar(e.target.value)}
         />

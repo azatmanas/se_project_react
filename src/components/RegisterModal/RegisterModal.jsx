@@ -5,13 +5,13 @@ function RegisterModal({
   closeActiveModal,
   isOpen,
   openLoginModal,
-  openRegister,
+  handleRegister,
 }) {
   const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
-    imageUrl: "",
+    avatar: "",
   });
   function handleChange(e) {
     const { name, value } = e.target;
@@ -23,25 +23,9 @@ function RegisterModal({
 
   function handleSubmit(e) {
     e.preventDefault();
-    openRegister(data);
+    console.log(data);
+    handleRegister(data);
   }
-
-  const handleRegister = ({ name, avatar, email, password }) => {
-    setIsLoading(true);
-    register({ name, avatar, email, password })
-      .then(() => {
-        return Login({ email, password });
-      })
-      .then((res) => {
-        localStorage.setItem("jwt", res.token);
-        setIsSignedIn(true);
-        setActiveModal("");
-      })
-      .catch((err) => {
-        console.error("Registration/Login error:", err);
-      })
-      .finally(() => setIsLoading(false));
-  };
 
   return (
     <ModalWithForm
@@ -91,15 +75,15 @@ function RegisterModal({
         />
       </label>
 
-      <label htmlFor="register-imageUrl" className="modal__label">
+      <label htmlFor="register-avatar" className="modal__label">
         Image
         <input
           type="url"
-          name="imageUrl"
+          name="avatar"
           className="modal__input"
-          id="register-imageUrl"
-          value={data.imageUrl}
-          placeholder="imageUrl"
+          id="register-avatar"
+          value={data.avatar}
+          placeholder="avatar"
           onChange={handleChange}
         />
       </label>
