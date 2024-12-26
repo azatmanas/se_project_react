@@ -17,6 +17,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { getCurrentUserInfo, register } from "../../utils/auth";
 import CurrentUserContext from "../../context/CurrentUserContext";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import LoginModal from "../LoginModal/LoginModal";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
@@ -48,6 +49,7 @@ function App() {
   };
 
   const openLoginModal = () => {
+    console.log("Azaaat");
     setActiveModal("login");
   };
 
@@ -109,6 +111,41 @@ function App() {
     };
   }, [activeModal]);
 
+  const updateProfile = (updateData) => {
+    setIsLoading(true);
+    onUpdateProfile(updateData)
+      .then((updateUser) => {
+        setCurrentUser(updateUser);
+        closeActiveModal(false);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  };
+
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+
+    !isLiked
+      ? api
+
+          .addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : api
+
+          .removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -119,7 +156,7 @@ function App() {
             <Header
               handleAddClick={handleAddClick}
               weatherData={weatherData}
-              openLoginModal={openLoginModal}
+              handleLoginModal={openLoginModal}
               openRegister={openRegister}
             />
             <Routes>
@@ -130,6 +167,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    handleCardLike={handleCardLike}
                   />
                 }
               ></Route>
@@ -177,9 +215,13 @@ function App() {
           />
           <EditProfileModal
             closeActiveModal={closeActiveModal}
-            isOpen={isOpen}
-            onUpdateProfile={onUpdateProfile}
+            isOpen={activeModal === "edit-profile"}
+            onUpdateProfile={updateProfile}
             isLoading={isLoading}
+          />
+          <LoginModal
+            isOpen={activeModal === "login"}
+            onClose={closeActiveModal}
           />
         </CurrentUserContext.Provider>
       </CurrentTemperatureUnitContext.Provider>

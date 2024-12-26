@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-function LoginModal({ onLogin, onClose }) {
-  const { email, setEmail } = useState();
-  const { password, setPassword } = useState();
+function LoginModal({ onLogin, onClose, isOpen }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -9,29 +9,33 @@ function LoginModal({ onLogin, onClose }) {
   };
 
   return (
-    <div className="modal">
-      <form action="submit" onSubmit={handleLogin}>
+    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
+      <form className="modal__form" onSubmit={handleLogin}>
         <h2>Login</h2>
-        <label htmlFor="input">
+        <label htmlFor="email-input">
           Email:
           <input
             type="email"
+            id="email-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
-        <label>
+        <label htmlFor="password-input">
           Password:
           <input
             type="password"
+            id="password-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Login</button>
-        <button type="cancel" onClick={onClose}>
+        <button type="submit" className="modal__button">
+          Login
+        </button>
+        <button className="modal__button" type="button" onClick={onClose}>
           Cancel
         </button>
       </form>

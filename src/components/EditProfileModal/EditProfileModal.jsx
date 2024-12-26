@@ -12,11 +12,6 @@ function EditProfileModal({
   const [name, setName] = useState(currentUser?.name || "");
   const [avatar, setAvatar] = useState(currentUser?.avatar || "");
 
-  const updateProfile = (name, avatar) => {
-    if (isLoading) {
-      return;
-    }
-  };
   useEffect(() => {
     if (currentUser) {
       setName(currentUser.name);
@@ -47,18 +42,20 @@ function EditProfileModal({
           id="name"
           placeholder="Name"
           value={name}
+          onChange={(e) => setName(e.target.value)}
         />
       </label>
 
-      <label htmlFor="imageUrl" className="modal__label">
+      <label htmlFor="avatar" className="modal__label">
         Image
         <input
           type="url"
           className="modal__input"
-          id="imageUrl"
-          name="imageUrl"
+          id="avatar"
+          name="avatar"
           placeholder="imageUrl"
-          value={imageUrl}
+          value={avatar}
+          onChange={(e) => setAvatar(e.target.value)}
         />
       </label>
     </ModalWithForm>
