@@ -72,11 +72,10 @@ function App() {
     login({ email, password })
       .then((data) => {
         localStorage.setItem("jwt", data.token);
-        setIsLoggedIn(true);
-        closeActiveModal();
+        handleGetUserData();
       })
       .catch(console.error)
-      .finally(() => setIsLoading(false));
+      .finally(() => setIsLoading(false), closeActiveModal());
   };
 
   const handleDeleteCardClick = (card) => {
@@ -122,24 +121,26 @@ function App() {
   }, [activeModal]);
 
   useEffect(() => {
-    getCurrentUserInfo().then(setCurrentUser).catch(console.error);
-  }, []);
+    if (isLoggedIn) {
+      const token = localStorage.getItem("jwt");
+      getCurrentUserInfo(token).then(setCurrentUser).catch(console.error);
+    }
+  }, [isLoggedIn]);
+
+  const handleGetUserData = () => {
+    const token = localStorage.getItem("jwt");
+    if (!token) return;
+    getCurrentUserInfo(token).then((userData) => {
+      setCurrentUser(userData);
+      setIsLoggedIn(true);
+    });
+  };
 
   const handleRegister = ({ name, avatar, email, password }) => {
     setIsLoading(true);
     register({ name, avatar, email, password })
       .then(() => {
-        login({ name, email, password, avatar })
-          .then((res) => {
-            const token = res.token;
-            localStorage.setItem("jwt", token);
-            setIsLoggedIn(true);
-            return getCurrentUserInfo(token);
-          })
-          .then((userInfo) => {
-            setCurrentUser(userInfo);
-            setActiveModal("");
-          });
+        return onLogin({ email, password });
       })
       .catch((err) => {
         console.error("Registration/Login error:", err);
@@ -194,6 +195,7 @@ function App() {
               weatherData={weatherData}
               handleLoginModal={openLoginModal}
               openRegister={openRegister}
+              isLoggedIn={isLoggedIn}
             />
             <Routes>
               <Route
@@ -203,7 +205,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
-                    handleCardLike={handleCardLike}
+                    onCardLike={handleCardLike}
                   />
                 }
               ></Route>

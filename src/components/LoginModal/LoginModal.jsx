@@ -13,21 +13,23 @@ function LoginModal({ onLogin, onClose, isOpen }) {
       <div className="modal__container">
         <form className="modal__form" onSubmit={handleLogin}>
           <h2>Login</h2>
-          <label htmlFor="email-input">
+          <label htmlFor="email-input" className="modal__label">
             Email:
             <input
               type="email"
               id="email-input"
+              className="modal__input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
           </label>
-          <label htmlFor="password-input">
+          <label htmlFor="password-input" className="modal__label">
             Password:
             <input
               type="password"
               id="password-input"
+              className="modal__input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

@@ -14,7 +14,6 @@ function EditProfileModal({
 
   useEffect(() => {
     if (currentUser) {
-      console.log(currentUser);
       setName(currentUser.name || "");
       setAvatar(currentUser.avatar || "");
     }

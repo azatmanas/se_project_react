@@ -73,6 +73,10 @@
   margin-left: 16px;
 }
 
-/* .header__auth-btn:hover {
-  background-color: #0056b3;
-} */
+.header__signup {
+  border: none;
+}
+
+.header__login {
+  border: none;
+}

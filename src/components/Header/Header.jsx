@@ -65,7 +65,7 @@ function Header({
             </div>
           </>
         ) : (
-          <div className="header__auth-btn">
+          <div className=" header__user-container header__auth-btn">
             <button
               onClick={openRegister}
               className="header__signup"

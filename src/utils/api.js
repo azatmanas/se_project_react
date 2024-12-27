@@ -1,5 +1,9 @@
 const baseUrl = "http://localhost:3001";
 
+const getToken = () => {
+  return localStorage.getItem("jwt");
+};
+
 export const checkResponse = (res) => {
   if (!res.ok) throw new Error(`Error: ${res.status}`);
   return res.json();
@@ -14,6 +18,7 @@ export const addItems = ({ name, imageUrl, weather }) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${getToken()}`,
     },
     body: JSON.stringify({ name, imageUrl, weather }),
   }).then(checkResponse);

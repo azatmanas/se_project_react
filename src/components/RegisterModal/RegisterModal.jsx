@@ -23,7 +23,6 @@ function RegisterModal({
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(data);
     handleRegister(data);
   }
 
