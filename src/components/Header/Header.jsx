@@ -30,6 +30,8 @@ function Header({
       );
     }
     if (currentUser && currentUser.name) {
+      console.log("Current User:", currentUser);
+
       const initial = currentUser.name.charAt(0).toUpperCase();
       return <div className="header__placeholder">{initial}</div>;
     }
@@ -73,6 +75,7 @@ function Header({
             >
               Sign Up
             </button>
+
             <button
               onClick={handleLoginModal}
               className="header__login"

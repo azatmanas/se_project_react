@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-function LoginModal({ onLogin, onClose, isOpen }) {
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+function LoginModal({
+  onLogin,
+  onClose,
+  isOpen,
+  closeActiveModal,
+  handleSubmit,
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -9,10 +16,16 @@ function LoginModal({ onLogin, onClose, isOpen }) {
   };
 
   return (
-    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
+    <ModalWithForm
+      title="Login"
+      buttonText="Login"
+      isOpen={isOpen}
+      closeActiveModal={closeActiveModal}
+      className="modal__container"
+      onSubmit={handleSubmit}
+    >
       <div className="modal__container">
-        <form className="modal__form" onSubmit={handleLogin}>
-          <h2>Login</h2>
+        <form className="modal__form">
           <label htmlFor="email-input" className="modal__label">
             Email:
             <input
@@ -43,7 +56,7 @@ function LoginModal({ onLogin, onClose, isOpen }) {
           </button>
         </form>
       </div>
-    </div>
+    </ModalWithForm>
   );
 }
 
