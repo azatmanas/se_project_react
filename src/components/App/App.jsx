@@ -262,6 +262,7 @@ function App() {
             isOpen={activeModal === "login"}
             onClose={closeActiveModal}
             onLogin={onLogin}
+            setActiveModal={setActiveModal}
           />
         </CurrentUserContext.Provider>
       </CurrentTemperatureUnitContext.Provider>
