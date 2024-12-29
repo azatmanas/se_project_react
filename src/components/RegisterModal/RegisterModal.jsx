@@ -28,7 +28,7 @@ function RegisterModal({
 
   return (
     <ModalWithForm
-      title="register"
+      title="Register"
       name="register"
       buttonText="Register"
       isOpen={isOpen}

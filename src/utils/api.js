@@ -27,5 +27,8 @@ export const addItems = ({ name, imageUrl, weather }) => {
 export const deleteItems = (id) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
+    headers: {
+      authorization: `Bearer ${getToken()}`,
+    },
   }).then(checkResponse);
 };
