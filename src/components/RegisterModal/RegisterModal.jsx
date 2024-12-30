@@ -28,8 +28,8 @@ function RegisterModal({
 
   return (
     <ModalWithForm
-      title="Register"
-      name="register"
+      title="Sign up"
+      name="sign up"
       buttonText="Register"
       isOpen={isOpen}
       closeActiveModal={closeActiveModal}
@@ -46,6 +46,7 @@ function RegisterModal({
           value={data.email}
           placeholder="email"
           onChange={handleChange}
+          autoComplete="off"
         />
       </label>
 
@@ -75,7 +76,7 @@ function RegisterModal({
       </label>
 
       <label htmlFor="register-avatar" className="modal__label">
-        Image
+        Avatar
         <input
           type="url"
           name="avatar"

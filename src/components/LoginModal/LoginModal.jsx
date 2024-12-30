@@ -2,8 +2,18 @@ import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function LoginModal({ onLogin, setActiveModal, isOpen, closeActiveModal }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -19,31 +29,33 @@ function LoginModal({ onLogin, setActiveModal, isOpen, closeActiveModal }) {
       handleSubmit={handleLogin}
       className="modal__container"
     >
-      <div className="modal__container">
-        <label htmlFor="email-input" className="modal__label">
-          Email:
-          <input
-            type="email"
-            id="email-input"
-            className="modal__input"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label htmlFor="password-input" className="modal__label">
-          Password:
-          <input
-            type="password"
-            id="password-input"
-            className="modal__input"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
+      <label className="modal__label">
+        Email:
+        <input
+          type="email"
+          id="email-input"
+          className="modal__input"
+          value={data.email}
+          placeholder="Email"
+          onChange={handleChange}
+          required
+        />
+      </label>
+      <label className="modal__label">
+        Password:
+        <input
+          type="password"
+          id="password-input"
+          className="modal__input"
+          value={data.password}
+          placeholder="Password"
+          onChange={handleChange}
+          required
+        />
+      </label>
+      <div className="modal__register-btn">
         <button
-          className="modal__submit"
+          className="modal__close "
           type="button"
           onClick={() => setActiveModal("Register")}
         >
