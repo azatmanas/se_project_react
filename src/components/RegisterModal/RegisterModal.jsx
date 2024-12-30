@@ -28,8 +28,8 @@ function RegisterModal({
 
   return (
     <ModalWithForm
-      title="Sign up"
-      name="sign up"
+      title="sign-up"
+      name="sign-up"
       buttonText="Register"
       isOpen={isOpen}
       closeActiveModal={closeActiveModal}

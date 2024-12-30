@@ -47,7 +47,7 @@ function LoginModal({ onLogin, setActiveModal, isOpen, closeActiveModal }) {
         <button
           className="modal__close "
           type="button"
-          onClick={() => setActiveModal("Register")}
+          onClick={() => setActiveModal("sign-up")}
         >
           or Register
         </button>

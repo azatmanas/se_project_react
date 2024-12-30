@@ -50,6 +50,9 @@ function App() {
   const openLoginModal = () => {
     setActiveModal("login");
   };
+  const handleSignUp = () => {
+    setActiveModal("sign-up");
+  };
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
@@ -73,9 +76,10 @@ function App() {
       .then((data) => {
         localStorage.setItem("jwt", data.token);
         handleGetUserData();
+        closeActiveModal();
       })
       .catch(console.error)
-      .finally(() => setIsLoading(false), closeActiveModal());
+      .finally(() => setIsLoading(false));
   };
 
   const handleDeleteCardClick = (card) => {
@@ -196,6 +200,7 @@ function App() {
               handleLoginModal={openLoginModal}
               openRegister={openRegister}
               isLoggedIn={isLoggedIn}
+              handleSignUp={handleSignUp}
             />
             <Routes>
               <Route
