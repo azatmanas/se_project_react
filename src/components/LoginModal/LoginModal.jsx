@@ -12,8 +12,8 @@ function LoginModal({ onLogin, setActiveModal, isOpen, closeActiveModal }) {
 
   return (
     <ModalWithForm
-      title="Login"
-      buttonText="Login"
+      title="login"
+      buttonText="login"
       isOpen={isOpen}
       closeActiveModal={closeActiveModal}
       handleSubmit={handleLogin}
@@ -47,7 +47,7 @@ function LoginModal({ onLogin, setActiveModal, isOpen, closeActiveModal }) {
         <button
           className="modal__close "
           type="button"
-          onClick={() => setActiveModal("sign-up")}
+          onClick={() => setActiveModal("register")}
         >
           or Register
         </button>

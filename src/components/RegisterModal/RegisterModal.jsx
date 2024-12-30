@@ -28,7 +28,7 @@ function RegisterModal({
 
   return (
     <ModalWithForm
-      title="sign-up"
+      title="Sign-up"
       name="sign-up"
       buttonText="Register"
       isOpen={isOpen}
@@ -76,14 +76,14 @@ function RegisterModal({
       </label>
 
       <label htmlFor="register-avatar" className="modal__label">
-        Avatar
+        Avatar Url
         <input
           type="url"
           name="avatar"
           className="modal__input"
           id="register-avatar"
           value={data.avatar}
-          placeholder="avatar"
+          placeholder="Avatar Url"
           onChange={handleChange}
         />
       </label>

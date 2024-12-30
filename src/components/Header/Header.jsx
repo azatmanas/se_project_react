@@ -10,7 +10,8 @@ function Header({
   weatherData,
   isLoggedIn,
   handleLoginModal,
-  openRegister,
+  handleSignUp,
+  handleSignOut,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -64,12 +65,19 @@ function Header({
               <Link to="/profile" className="header__link">
                 {renderUserAvatar()}
               </Link>
+              <button
+                onClick={handleSignOut}
+                type="button"
+                className="header__signout"
+              >
+                Sign Out
+              </button>
             </div>
           </>
         ) : (
           <div className=" header__user-container header__auth-btn">
             <button
-              onClick={openRegister}
+              onClick={handleSignUp}
               className="header__signup"
               type="button"
             >

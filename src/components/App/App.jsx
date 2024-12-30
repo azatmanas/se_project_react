@@ -36,15 +36,15 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
+  const handleDeleteCardClick = (card) => {
+    setSelectedCard(card);
+    setActiveModal("delete-confirmation");
+  };
   const handleAddClick = () => {
     setActiveModal("add-garment");
   };
   const closeActiveModal = () => {
     setActiveModal("");
-  };
-
-  const openRegister = () => {
-    setActiveModal("register");
   };
 
   const openLoginModal = () => {
@@ -80,11 +80,6 @@ function App() {
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));
-  };
-
-  const handleDeleteCardClick = (card) => {
-    setSelectedCard(card);
-    setActiveModal("delete-confirmation");
   };
 
   const handleDeleteCard = (id) => {
@@ -187,6 +182,12 @@ function App() {
           .catch((err) => console.log(err));
   };
 
+  const handleSignOut = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser({});
+  };
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -198,9 +199,9 @@ function App() {
               handleAddClick={handleAddClick}
               weatherData={weatherData}
               handleLoginModal={openLoginModal}
-              openRegister={openRegister}
               isLoggedIn={isLoggedIn}
               handleSignUp={handleSignUp}
+              handleSignOut={handleSignOut}
             />
             <Routes>
               <Route
@@ -245,7 +246,7 @@ function App() {
           />
           <RegisterModal
             closeActiveModal={closeActiveModal}
-            isOpen={activeModal === "register"}
+            isOpen={activeModal === "sign-up"}
             isLoading={isLoading}
             openLoginModal={openLoginModal}
             handleRegister={handleRegister}

@@ -24,6 +24,9 @@ export const login = ({ email, password }) => {
 };
 
 export const getCurrentUserInfo = (token) => {
+  if (!token) {
+    return Promise.reject("Token is missing");
+  }
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
