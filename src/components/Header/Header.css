@@ -71,6 +71,9 @@
   cursor: pointer;
   font-size: 14px;
   margin-left: 16px;
+  display: flex;
+  justify-content: center; /* To center the buttons */
+  align-items: center;
 }
 
 .header__signup {
@@ -78,5 +81,8 @@
 }
 
 .header__login {
+  border: none;
+}
+.header__signout {
   border: none;
 }

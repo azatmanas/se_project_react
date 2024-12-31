@@ -28,9 +28,9 @@ function RegisterModal({
 
   return (
     <ModalWithForm
-      title="Sign-up"
-      name="sign-up"
-      buttonText="Register"
+      title="Sign up"
+      name="sign up"
+      buttonText="Next"
       isOpen={isOpen}
       closeActiveModal={closeActiveModal}
       className="modal__container"
@@ -44,9 +44,8 @@ function RegisterModal({
           id="register-email"
           className="modal__input"
           value={data.email}
-          placeholder="email"
+          placeholder="Email"
           onChange={handleChange}
-          autoComplete="off"
         />
       </label>
 
@@ -58,7 +57,7 @@ function RegisterModal({
           id="register-password"
           className="modal__input"
           value={data.password}
-          placeholder="password"
+          placeholder="Password"
           onChange={handleChange}
         />
       </label>

@@ -74,6 +74,7 @@ function App() {
     setIsLoading(true);
     login({ email, password })
       .then((data) => {
+        console.error(data);
         localStorage.setItem("jwt", data.token);
         handleGetUserData();
         closeActiveModal();
@@ -249,6 +250,7 @@ function App() {
             isOpen={activeModal === "sign-up"}
             isLoading={isLoading}
             openLoginModal={openLoginModal}
+            handleSignUp={handleSignUp}
             handleRegister={handleRegister}
           />
           <Footer />
@@ -266,7 +268,7 @@ function App() {
           />
           <LoginModal
             isOpen={activeModal === "login"}
-            onClose={closeActiveModal}
+            closeActiveModal={closeActiveModal}
             onLogin={onLogin}
             setActiveModal={setActiveModal}
           />
