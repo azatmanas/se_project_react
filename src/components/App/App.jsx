@@ -271,6 +271,7 @@ function App() {
             closeActiveModal={closeActiveModal}
             onLogin={onLogin}
             setActiveModal={setActiveModal}
+            onRegisterButtonClick={handleSignUp}
           />
         </CurrentUserContext.Provider>
       </CurrentTemperatureUnitContext.Provider>

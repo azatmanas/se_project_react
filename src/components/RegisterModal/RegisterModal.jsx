@@ -86,7 +86,11 @@ function RegisterModal({
           onChange={handleChange}
         />
       </label>
-      <button className="modal__btn-login" onClick={openLoginModal}>
+      <button
+        type="button"
+        className="modal__btn-login"
+        onClick={openLoginModal}
+      >
         or Log in
       </button>
     </ModalWithForm>
