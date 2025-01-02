@@ -32,3 +32,21 @@ export const deleteItems = (id) => {
     },
   }).then(checkResponse);
 };
+
+export const addCardLike = (id) => {
+  return fetch(`${baseUrl}/items/${id}`, {
+    method: "POST",
+    headers: {
+      authorization: `Bearer ${getToken()}`,
+    },
+  }).then(checkResponse);
+};
+
+export const removeCardLike = (id) => {
+  return fetch(`${baseUrl}/items/${id}`, {
+    method: "DELETE",
+    headers: {
+      authorization: `Bearer ${getToken()}`,
+    },
+  }).then(checkResponse);
+};

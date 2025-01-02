@@ -18,6 +18,7 @@ import { getCurrentUserInfo, login, register } from "../../utils/auth";
 import CurrentUserContext from "../../context/CurrentUserContext";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import LoginModal from "../LoginModal/LoginModal";
+import ItemCard from "../ItemCard/ItemCard";
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
@@ -273,6 +274,7 @@ function App() {
             setActiveModal={setActiveModal}
             onRegisterButtonClick={handleSignUp}
           />
+          <ItemCard onCardLike={handleCardLike} />
         </CurrentUserContext.Provider>
       </CurrentTemperatureUnitContext.Provider>
     </div>
