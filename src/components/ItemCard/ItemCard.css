@@ -5,8 +5,20 @@
   justify-content: center;
 }
 
-.item__name {
+.item__container {
   position: absolute;
+  top: 15px;
+  width: 100%;
+  display: flex;
+}
+
+.item__button-container {
+  display: flex;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+.item__name {
   top: 15px;
   margin: 0;
   padding: 2px 12px 2px 12px;
@@ -17,6 +29,15 @@
   font-weight: 700;
   line-height: 20px;
   text-align: left;
+  border-radius: 4px;
+}
+
+.item__like-button {
+  background-color: transparent;
+  width: fit-content;
+  padding: 0;
+  height: fit-content;
+  border: none;
 }
 
 .item__image {

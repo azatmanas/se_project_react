@@ -274,7 +274,6 @@ function App() {
             setActiveModal={setActiveModal}
             onRegisterButtonClick={handleSignUp}
           />
-          <ItemCard onCardLike={handleCardLike} />
         </CurrentUserContext.Provider>
       </CurrentTemperatureUnitContext.Provider>
     </div>
