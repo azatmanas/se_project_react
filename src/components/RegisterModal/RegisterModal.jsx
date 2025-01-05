@@ -36,12 +36,12 @@ function RegisterModal({
       className="modal__container"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="register-email" className="modal__label">
+      <label className="modal__label">
         Email
         <input
           type="email"
           name="email"
-          id="register-email"
+          id="email"
           className="modal__input"
           value={data.email}
           placeholder="Email"
@@ -49,24 +49,24 @@ function RegisterModal({
         />
       </label>
 
-      <label htmlFor="register-password" className="modal__label">
+      <label className="modal__label">
         Password
         <input
           type="password"
           name="password"
-          id="register-password"
+          id="password"
           className="modal__input"
           value={data.password}
           placeholder="Password"
           onChange={handleChange}
         />
       </label>
-      <label htmlFor="register-name" className="modal__label">
+      <label className="modal__label">
         Name
         <input
           type="text"
           name="name"
-          id="register-name"
+          id="name"
           className="modal__input"
           placeholder="Name"
           value={data.name}
@@ -74,13 +74,13 @@ function RegisterModal({
         />
       </label>
 
-      <label htmlFor="register-avatar" className="modal__label">
+      <label className="modal__label">
         Avatar Url
         <input
           type="url"
           name="avatar"
           className="modal__input"
-          id="register-avatar"
+          id="avatar"
           value={data.avatar}
           placeholder="Avatar Url"
           onChange={handleChange}
