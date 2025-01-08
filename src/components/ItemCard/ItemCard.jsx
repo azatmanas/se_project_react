@@ -3,7 +3,7 @@ import heartIcon from "../../assets/unlike.svg";
 import darkHeart from "../../assets/likeheart.svg";
 function ItemCard({ item, onCardClick, onCardLike }) {
   const handleLike = () => {
-    onCardLike({ id, isLiked });
+    onCardLike({ id: item._id, isLiked: item.isLiked });
   };
   const handleCardClick = () => {
     onCardClick(item);
@@ -31,10 +31,6 @@ function ItemCard({ item, onCardClick, onCardLike }) {
       />
     </li>
   );
-
-  function newFunction() {
-    onCardLike({ id: item._id, isLiked: item.isLiked });
-  }
 }
 
 export default ItemCard;
