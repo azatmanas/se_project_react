@@ -43,9 +43,10 @@ function RegisterModal({
           name="email"
           id="email"
           className="modal__input"
-          value={""}
+          value={data.email}
           placeholder="Email"
           onChange={handleChange}
+          autoComplete="off"
         />
       </label>
 
@@ -56,9 +57,10 @@ function RegisterModal({
           name="password"
           id="password"
           className="modal__input"
-          value={""}
+          value={data.password}
           placeholder="Password"
           onChange={handleChange}
+          autoComplete="off"
         />
       </label>
       <label className="modal__label">
@@ -69,7 +71,7 @@ function RegisterModal({
           id="name"
           className="modal__input"
           placeholder="Name"
-          value={""}
+          value={data.name}
           onChange={handleChange}
         />
       </label>
@@ -81,7 +83,7 @@ function RegisterModal({
           name="avatar"
           className="modal__input"
           id="avatar"
-          value={""}
+          value={data.avatar}
           placeholder="Avatar Url"
           onChange={handleChange}
         />
