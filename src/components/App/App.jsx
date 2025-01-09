@@ -75,7 +75,6 @@ function App() {
     setIsLoading(true);
     login({ email, password })
       .then((data) => {
-        console.error(data);
         localStorage.setItem("jwt", data.token);
         handleGetUserData();
         closeActiveModal();
