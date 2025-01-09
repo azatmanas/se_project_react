@@ -10,7 +10,7 @@ import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, addItems, deleteItems } from "../../utils/api";
+import { getItems, addItems, deleteItems, addCardLike } from "../../utils/api";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -18,7 +18,7 @@ import { getCurrentUserInfo, login, register } from "../../utils/auth";
 import CurrentUserContext from "../../context/CurrentUserContext";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import LoginModal from "../LoginModal/LoginModal";
-import ItemCard from "../ItemCard/ItemCard";
+
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
@@ -163,25 +163,23 @@ function App() {
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
 
-    !isLiked
-      ? api
-
-          .addCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
-            );
-          })
-          .catch((err) => console.log(err))
-      : api
-
-          .removeCardLike(id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
-            );
-          })
-          .catch((err) => console.log(err));
+    if (!isLiked) {
+      addCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    } else {
+      removeCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   const handleSignOut = () => {
@@ -226,6 +224,7 @@ function App() {
                       closeActiveModal={closeActiveModal}
                       clothingItems={clothingItems}
                       onAddItem={onAddItem}
+                      onCardLike={handleCardLike}
                       handleAddClick={handleAddClick}
                     />
                   </ProtectedRoute>
