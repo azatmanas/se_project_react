@@ -28,6 +28,7 @@ export const deleteItems = (id) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
+      "Content-Type": "application/json",
       authorization: `Bearer ${getToken()}`,
     },
   }).then(checkResponse);
@@ -37,6 +38,7 @@ export const addCardLike = (id) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "POST",
     headers: {
+      "Content-Type": "application/json",
       authorization: `Bearer ${getToken()}`,
     },
   }).then(checkResponse);
@@ -46,6 +48,7 @@ export const removeCardLike = (id) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
+      "Content-Type": "application/json",
       authorization: `Bearer ${getToken()}`,
     },
   }).then(checkResponse);
