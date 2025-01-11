@@ -65,13 +65,6 @@ function Header({
               <Link to="/profile" className="header__link">
                 {renderUserAvatar()}
               </Link>
-              <button
-                onClick={handleSignOut}
-                type="button"
-                className="header__signout"
-              >
-                Sign Out
-              </button>
             </div>
           </>
         ) : (
