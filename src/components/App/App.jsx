@@ -225,6 +225,8 @@ function App() {
                       onAddItem={onAddItem}
                       onCardLike={handleCardLike}
                       handleAddClick={handleAddClick}
+                      updateProfile={updateProfile}
+                      handleSignOut={handleSignOut}
                     />
                   </ProtectedRoute>
                 }
