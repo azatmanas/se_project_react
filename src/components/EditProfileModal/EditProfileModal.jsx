@@ -39,7 +39,6 @@ function EditProfileModal({
           type="text"
           className="modal__input"
           name="name"
-          id="name"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -51,7 +50,6 @@ function EditProfileModal({
         <input
           type="url"
           className="modal__input"
-          id="avatar"
           name="avatar"
           placeholder="avatar"
           value={avatar}

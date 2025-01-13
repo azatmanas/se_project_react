@@ -28,7 +28,6 @@ const AddItemModal = ({ closeActiveModal, isOpen, onAddItem, isLoading }) => {
           type="text"
           className="modal__input"
           name="name"
-          id="name"
           placeholder="Name"
           value={values.name || ""}
           onChange={handleChange}
