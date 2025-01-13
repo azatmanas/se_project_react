@@ -148,9 +148,9 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
-  const updateProfile = (updateData) => {
+  const onUpdateProfile = (name, token, avatar) => {
     setIsLoading(true);
-    onUpdateProfile(updateData)
+    editProfile(name, token, avatar)
       .then((updateUser) => {
         setCurrentUser(updateUser);
         closeActiveModal();
@@ -225,7 +225,6 @@ function App() {
                       onAddItem={onAddItem}
                       onCardLike={handleCardLike}
                       handleAddClick={handleAddClick}
-                      updateProfile={updateProfile}
                       handleSignOut={handleSignOut}
                     />
                   </ProtectedRoute>
@@ -264,7 +263,7 @@ function App() {
           <EditProfileModal
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "edit-profile"}
-            onUpdateProfile={updateProfile}
+            onUpdateProfile={onUpdateProfile}
             isLoading={isLoading}
           />
           <LoginModal
