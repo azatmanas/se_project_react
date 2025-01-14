@@ -35,7 +35,7 @@ export const deleteItems = (id) => {
 };
 
 export const addCardLike = (id) => {
-  return fetch(`${baseUrl}/items/${id}`, {
+  return fetch(`${baseUrl}/items/${id}/like`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
