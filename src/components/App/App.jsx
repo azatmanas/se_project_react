@@ -148,7 +148,7 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
-  const onUpdateProfile = (name, token, avatar) => {
+  const onUpdateProfile = ({ name, token, avatar }) => {
     setIsLoading(true);
     editProfile(name, token, avatar)
       .then((updateUser) => {
