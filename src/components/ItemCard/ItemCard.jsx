@@ -1,8 +1,14 @@
 import "./ItemCard.css";
 import heartIcon from "../../assets/unlike.svg";
 import darkHeart from "../../assets/likeheart.svg";
+import { useContext } from "react";
+import CurrentUserContext from "../../context/CurrentUserContext";
 function ItemCard({ item, onCardClick, onCardLike }) {
+  const currentUser = useContext(CurrentUserContext);
   const handleLike = () => {
+    if (!currentUser.id) {
+      return;
+    }
     onCardLike({ id: item._id, isLiked: item.isLiked });
   };
   const handleCardClick = () => {
