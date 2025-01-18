@@ -6,7 +6,6 @@ import CurrentUserContext from "../../context/CurrentUserContext";
 function ItemCard({ item, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
   const handleLike = () => {
-    console.log(currentUser);
     if (!currentUser._id) {
       return;
     }
