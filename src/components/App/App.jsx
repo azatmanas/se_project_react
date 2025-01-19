@@ -148,7 +148,7 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
-  const onUpdateProfile = ({ name, token, avatar }) => {
+  const updateProfile = ({ name, token, avatar }) => {
     setIsLoading(true);
     editProfile(name, token, avatar)
       .then((updateUser) => {
@@ -165,9 +165,11 @@ function App() {
     if (!isLiked) {
       addCardLike(id, token)
         .then((updatedCard) => {
-          console.log(clothingItems, updatedCard);
+          // console.log(clothingItems, updatedCard);
           setClothingItems((cards) =>
-            cards.map((item) => (item._id === id ? updatedCard : item))
+            cards.map((item) =>
+              item._id === id ? { ...updatedCard, ...item } : item
+            )
           );
         })
         .catch((err) => console.log(err));
@@ -264,7 +266,7 @@ function App() {
           <EditProfileModal
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "edit-profile"}
-            onUpdateProfile={onUpdateProfile}
+            updateProfile={updateProfile}
             isLoading={isLoading}
           />
           <LoginModal
