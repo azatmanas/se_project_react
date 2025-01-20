@@ -46,6 +46,11 @@
   background-color: transparent;
 }
 
+.item__like-button_active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
 .item__image {
   max-width: 325px;
   height: 328px;
