@@ -1,13 +1,13 @@
 import avatar from "../../assets/avatar1.png";
 import "./SideBar.css";
 
-function SideBar({ updateProfile, handleSignOut }) {
+function SideBar({ editProfile, handleSignOut }) {
   return (
     <div className="sidebar">
       <img className="sidebar__avatar" src={avatar} alt="avatar" />
       <p className="sidebar__username">Azat Manas</p>
       <div className="sidebar__menu">
-        <button onClick={updateProfile} type="button" className="sidebar__edit">
+        <button onClick={editProfile} type="button" className="sidebar__edit">
           Edit Profile
         </button>
         <button

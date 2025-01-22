@@ -8,13 +8,13 @@ function Profile({
   handleAddClick,
   onAddItem,
   onCardLike,
-  updateProfile,
+  editProfile,
   handleSignOut,
 }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar updateProfile={updateProfile} handleSignOut={handleSignOut} />
+        <SideBar editProfile={editProfile} handleSignOut={handleSignOut} />
       </section>
       <section className="profile__clothing-item">
         <ClothesSection

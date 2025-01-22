@@ -5,7 +5,7 @@ import "./EditProfileModal.css";
 function EditProfileModal({
   isOpen,
   closeActiveModal,
-  onUpdateProfile,
+  editProfile,
   isLoading,
 }) {
   const currentUser = useContext(CurrentUserContext);
@@ -21,7 +21,7 @@ function EditProfileModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onUpdateProfile({ name, avatar });
+    editProfile({ name, avatar });
   };
 
   return (

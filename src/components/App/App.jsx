@@ -148,7 +148,7 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
-  const updateProfile = ({ name, token, avatar }) => {
+  const editProfile = ({ name, token, avatar }) => {
     setIsLoading(true);
     editProfile(name, token, avatar)
       .then((updateUser) => {
@@ -266,7 +266,7 @@ function App() {
           <EditProfileModal
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "edit-profile"}
-            updateProfile={updateProfile}
+            editProfile={editProfile}
             isLoading={isLoading}
           />
           <LoginModal
