@@ -165,7 +165,7 @@ function App() {
     if (!isLiked) {
       addCardLike(id, token)
         .then((updatedCard) => {
-          console.log(clothingItems, updatedCard);
+          // console.log(clothingItems, updatedCard);
           setClothingItems((cards) =>
             cards.map((item) =>
               item._id === id ? { ...updatedCard, ...item } : item
