@@ -165,7 +165,7 @@ function App() {
     if (!isLiked) {
       addCardLike(id, token)
         .then((updatedCard) => {
-          // console.log(clothingItems, updatedCard);
+          console.log(clothingItems, updatedCard);
           setClothingItems((cards) =>
             cards.map((item) =>
               item._id === id ? { ...updatedCard, ...item } : item
@@ -204,6 +204,7 @@ function App() {
               isLoggedIn={isLoggedIn}
               handleSignUp={handleSignUp}
               handleSignOut={handleSignOut}
+              editProfile={editProfile}
             />
             <Routes>
               <Route
@@ -229,6 +230,7 @@ function App() {
                       onCardLike={handleCardLike}
                       handleAddClick={handleAddClick}
                       handleSignOut={handleSignOut}
+                      editProfile={editProfile}
                     />
                   </ProtectedRoute>
                 }
