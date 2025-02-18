@@ -61,6 +61,6 @@ export const editProfile = ({ name, token, imageUrl }) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${getToken()}`,
     },
-    body: JSON.stringify({ name, imageUrl, weather }),
+    body: JSON.stringify({ name, imageUrl, token }),
   }).then(checkResponse);
 };
