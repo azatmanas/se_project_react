@@ -121,9 +121,14 @@ function App() {
   }, [activeModal]);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      const token = localStorage.getItem("jwt");
-      getCurrentUserInfo(token).then(setCurrentUser).catch(console.error);
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      getCurrentUserInfo(token)
+        .then((userData) => {
+          setIsLoggedIn(true);
+          setCurrentUser(userData);
+        })
+        .catch(console.error);
     }
   }, [isLoggedIn]);
 
@@ -165,7 +170,7 @@ function App() {
     if (!isLiked) {
       addCardLike(id, token)
         .then((updatedCard) => {
-          // console.log(clothingItems, updatedCard);
+          console.log(clothingItems, updatedCard);
           setClothingItems((cards) =>
             cards.map((item) =>
               item._id === id ? { ...updatedCard, ...item } : item
