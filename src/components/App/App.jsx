@@ -10,7 +10,13 @@ import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, addItems, deleteItems, addCardLike } from "../../utils/api";
+import {
+  getItems,
+  addItems,
+  deleteItems,
+  addCardLike,
+  editProfile,
+} from "../../utils/api";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -153,9 +159,9 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
-  const editProfile = ({ name, token, avatar }) => {
+  const handleEditProfile = ({ name, avatar }) => {
     setIsLoading(true);
-    editProfile(name, token, avatar)
+    editProfile(name, avatar)
       .then((updateUser) => {
         setCurrentUser(updateUser);
         closeActiveModal();
@@ -209,7 +215,7 @@ function App() {
               isLoggedIn={isLoggedIn}
               handleSignUp={handleSignUp}
               handleSignOut={handleSignOut}
-              editProfile={editProfile}
+              handleEditProfile={handleEditProfile}
             />
             <Routes>
               <Route
@@ -235,7 +241,7 @@ function App() {
                       onCardLike={handleCardLike}
                       handleAddClick={handleAddClick}
                       handleSignOut={handleSignOut}
-                      editProfile={editProfile}
+                      handleEditProfile={handleEditProfile}
                     />
                   </ProtectedRoute>
                 }
@@ -273,7 +279,7 @@ function App() {
           <EditProfileModal
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "edit-profile"}
-            editProfile={editProfile}
+            handleEditProfile={handleEditProfile}
             isLoading={isLoading}
           />
           <LoginModal

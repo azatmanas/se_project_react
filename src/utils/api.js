@@ -54,13 +54,13 @@ export const removeCardLike = (id) => {
   }).then(checkResponse);
 };
 
-export const editProfile = ({ name, token, imageUrl }) => {
-  return fetch(`${baseUrl}/items`, {
-    method: "POST",
+export const editProfile = ({ name, avatar }) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${getToken()}`,
     },
-    body: JSON.stringify({ name, imageUrl, token }),
+    body: JSON.stringify({ name, avatar }),
   }).then(checkResponse);
 };
