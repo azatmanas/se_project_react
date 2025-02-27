@@ -1,7 +1,9 @@
 .sidebar {
-  display: flex;
-  flex-direction: row;
+  /* display: flex;
+  flex-direction: row; */
   position: relative;
+  width: 229px;
+  height: 138px;
 }
 
 .sidebar__avatar {

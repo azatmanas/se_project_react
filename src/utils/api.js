@@ -56,7 +56,7 @@ export const removeCardLike = (id) => {
 
 export const editProfile = ({ name, avatar }) => {
   return fetch(`${baseUrl}/users/me`, {
-    method: "PUT",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${getToken()}`,

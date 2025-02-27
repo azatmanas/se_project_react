@@ -2,6 +2,9 @@ import avatar from "../../assets/avatar1.png";
 import "./SideBar.css";
 
 function SideBar({ editProfile, handleSignOut }) {
+  const handleEditClick = () => {
+    editProfile({ name, avatar: avatarUrl });
+  };
   return (
     <div className="sidebar">
       <img className="sidebar__avatar" src={avatar} alt="avatar" />
