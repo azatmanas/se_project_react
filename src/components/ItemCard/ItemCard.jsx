@@ -5,11 +5,13 @@ import { useContext } from "react";
 import CurrentUserContext from "../../context/CurrentUserContext";
 function ItemCard({ item, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
+
+  const isLiked = item.likes.includes(currentUser._id);
   const handleLike = () => {
     if (!currentUser._id) {
       return;
     }
-    onCardLike({ id: item._id, isLiked: item.isLiked });
+    onCardLike({ id: item._id, isLiked });
   };
   const handleCardClick = () => {
     onCardClick(item);
@@ -21,11 +23,11 @@ function ItemCard({ item, onCardClick, onCardLike }) {
           <h2 className="item__name">{item.name}</h2>
           <button
             className={`item__like-button ${
-              item.isLiked ? "item__like-button_active" : ""
+              isLiked ? "item__like-button_active" : ""
             }`}
             onClick={handleLike}
           >
-            <img src={item.isLiked ? darkHeart : heartIcon} alt="like button" />
+            <img src={isLiked ? darkHeart : heartIcon} alt="like button" />
           </button>
         </div>
       </div>

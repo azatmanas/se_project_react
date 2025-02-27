@@ -47,8 +47,9 @@
 }
 
 .item__like-button_active {
-  background-color: white;
+  /* background-color: white; */
   transform: scale(1.2);
+  object-fit: contain;
 }
 
 .item__image {

@@ -16,6 +16,7 @@ import {
   deleteItems,
   addCardLike,
   editProfile,
+  removeCardLike,
 } from "../../utils/api";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
@@ -161,7 +162,7 @@ function App() {
 
   const handleEditProfile = ({ name, avatar }) => {
     setIsLoading(true);
-    editProfile(name, avatar)
+    editProfile({ name, avatar })
       .then((updateUser) => {
         setCurrentUser(updateUser);
         closeActiveModal();
@@ -178,9 +179,7 @@ function App() {
         .then((updatedCard) => {
           console.log(clothingItems, updatedCard);
           setClothingItems((cards) =>
-            cards.map((item) =>
-              item._id === id ? { ...updatedCard, ...item } : item
-            )
+            cards.map((item) => (item._id === id ? updatedCard.data : item))
           );
         })
         .catch((err) => console.log(err));
@@ -188,7 +187,7 @@ function App() {
       removeCardLike(id, token)
         .then((updatedCard) => {
           setClothingItems((cards) =>
-            cards.map((item) => (item._id === id ? updatedCard : item))
+            cards.map((item) => (item._id === id ? updatedCard.data : item))
           );
         })
         .catch((err) => console.log(err));
