@@ -37,6 +37,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
@@ -165,7 +166,8 @@ function App() {
     editProfile({ name, avatar })
       .then((updateUser) => {
         setCurrentUser(updateUser);
-        closeActiveModal();
+        setIsEditProfileOpen(false);
+        // closeActiveModal();
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));
@@ -177,7 +179,7 @@ function App() {
     if (!isLiked) {
       addCardLike(id, token)
         .then((updatedCard) => {
-          // console.log(clothingItems, updatedCard);
+          console.log(clothingItems, updatedCard);
           setClothingItems((cards) =>
             cards.map((item) =>
               item._id === id ? { ...updatedCard.data } : item

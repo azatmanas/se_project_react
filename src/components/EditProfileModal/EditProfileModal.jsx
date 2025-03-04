@@ -22,6 +22,7 @@ function EditProfileModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     editProfile({ name, avatar });
+    if (!isOpen) return null;
   };
 
   return (
