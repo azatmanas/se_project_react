@@ -37,7 +37,6 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
@@ -138,7 +137,7 @@ function App() {
         })
         .catch(console.error);
     }
-  }, [isLoggedIn]);
+  }, []);
 
   const handleGetUserData = () => {
     const token = localStorage.getItem("jwt");
@@ -166,8 +165,7 @@ function App() {
     editProfile({ name, avatar })
       .then((updateUser) => {
         setCurrentUser(updateUser);
-        setIsEditProfileOpen(false);
-        // closeActiveModal();
+        closeActiveModal();
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));
@@ -205,6 +203,9 @@ function App() {
     setIsLoggedIn(false);
     setCurrentUser({});
   };
+  const openEditProfileModal = () => {
+    setActiveModal("edit-profile");
+  };
 
   return (
     <div className="page">
@@ -221,6 +222,7 @@ function App() {
               handleSignUp={handleSignUp}
               handleSignOut={handleSignOut}
               handleEditProfile={handleEditProfile}
+              openEditProfileModal={openEditProfileModal}
             />
             <Routes>
               <Route
@@ -231,6 +233,7 @@ function App() {
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     onCardLike={handleCardLike}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               ></Route>
@@ -247,6 +250,7 @@ function App() {
                       handleAddClick={handleAddClick}
                       handleSignOut={handleSignOut}
                       handleEditProfile={handleEditProfile}
+                      openEditProfileModal={openEditProfileModal}
                     />
                   </ProtectedRoute>
                 }
