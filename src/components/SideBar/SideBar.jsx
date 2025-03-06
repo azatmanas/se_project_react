@@ -1,11 +1,14 @@
 import avatar from "../../assets/avatar1.png";
 import "./SideBar.css";
+import { useContext } from "react";
+import CurrentUserContext from "../../context/CurrentUserContext";
 
 function SideBar({ openEditProfileModal, handleSignOut }) {
+  const currentUser = useContext(CurrentUserContext);
   return (
     <div className="sidebar">
-      <img className="sidebar__avatar" src={avatar} alt="avatar" />
-      <p className="sidebar__username">Azat Manas</p>
+      <img className="sidebar__avatar" src={currentUser.avatar} alt="avatar" />
+      <p className="sidebar__username">{currentUser.name}</p>
       <div className="sidebar__menu">
         <button
           onClick={openEditProfileModal}
