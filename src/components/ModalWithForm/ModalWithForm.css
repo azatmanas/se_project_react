@@ -44,7 +44,7 @@
 }
 
 .modal__image {
-  max-width: 498px;
+  width: 498px;
   height: 498px;
   border-radius: 15px;
   object-fit: cover;

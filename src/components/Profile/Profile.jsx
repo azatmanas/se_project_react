@@ -8,14 +8,14 @@ function Profile({
   handleAddClick,
   onAddItem,
   onCardLike,
-  handleEditProfile,
+  openEditProfileModal,
   handleSignOut,
 }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
         <SideBar
-          editProfile={handleEditProfile}
+          openEditProfileModal={openEditProfileModal}
           handleSignOut={handleSignOut}
         />
       </section>
