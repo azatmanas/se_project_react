@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm";
 import "./RegisterModal.css";
 
 function RegisterModal({
@@ -8,23 +9,17 @@ function RegisterModal({
   openLoginModal,
   handleRegister,
 }) {
-  const [data, setData] = useState({
+  const [values, handleChange, resetForm] = useForm({
     name: "",
     email: "",
     password: "",
     avatar: "",
   });
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleRegister(data);
+    handleRegister(values);
+    resetForm();
   }
 
   return (
@@ -44,7 +39,7 @@ function RegisterModal({
           name="email"
           id="email"
           className="modal__input"
-          value={data.email}
+          value={values.email}
           placeholder="Email"
           onChange={handleChange}
           autoComplete="off"
@@ -58,7 +53,7 @@ function RegisterModal({
           name="password"
           id="password"
           className="modal__input"
-          value={data.password}
+          value={values.password}
           placeholder="Password"
           onChange={handleChange}
           autoComplete="off"
@@ -72,7 +67,7 @@ function RegisterModal({
           id="name"
           className="modal__input"
           placeholder="Name"
-          value={data.name}
+          value={values.name}
           onChange={handleChange}
         />
       </label>
@@ -84,7 +79,7 @@ function RegisterModal({
           name="avatar"
           className="modal__input"
           id="avatar"
-          value={data.avatar}
+          value={values.avatar}
           placeholder="Avatar Url"
           onChange={handleChange}
         />

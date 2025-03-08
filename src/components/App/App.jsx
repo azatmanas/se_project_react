@@ -67,16 +67,42 @@ function App() {
   };
 
   const onAddItem = (name, imageUrl, weather, resetForm) => {
-    setIsLoading(true);
-    addItems({ name, imageUrl, weather })
-      .then((newItem) => {
+    const makeRequest = () =>
+      addItems({ name, imageUrl, weather }).then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
-        closeActiveModal();
         resetForm();
-      })
+      });
+
+    handleSubmit(makeRequest);
+  };
+
+  function handleSubmit(request) {
+    setIsLoading(true);
+    request()
+      .then(handleCloseModal)
       .catch(console.error)
       .finally(() => setIsLoading(false));
-  };
+  }
+
+  // const onAddItem = (name, imageUrl, weather, resetForm) => {
+  //   setIsLoading(true);
+  //   addItems({ name, imageUrl, weather })
+  //     .then((newItem) => {
+  //       setClothingItems([newItem, ...clothingItems]);
+  //       closeActiveModal();
+  //       resetForm();
+  //     })
+  //     .catch(console.error)
+  //     .finally(() => setIsLoading(false));
+  // };
+
+  // function handleSubmit(request) {
+  //   setIsLoading(true);
+  //   request()
+  //     .then(handleCloseModal)
+  //     .catch(console.error)
+  //     .finally(() => setIsLoading(false));
+  // }
 
   const onLogin = ({ email, password }) => {
     setIsLoading(true);
