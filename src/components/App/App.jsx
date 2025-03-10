@@ -65,6 +65,9 @@ function App() {
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "C" ? "F" : "C"));
   };
+  const openEditProfileModal = () => {
+    setActiveModal("edit-profile");
+  };
 
   const onAddItem = (name, imageUrl, weather, resetForm) => {
     const makeRequest = () =>
@@ -153,25 +156,19 @@ function App() {
 
   const handleRegister = ({ name, avatar, email, password }) => {
     setIsLoading(true);
-    register({ name, avatar, email, password })
-      .then(() => {
-        return onLogin({ email, password });
-      })
-      .catch((err) => {
-        console.error("Registration/Login error:", err);
-      })
-      .finally(() => setIsLoading(false));
+    register({ name, avatar, email, password }).then(() => {
+      return onLogin({ email, password });
+    });
+    handleSubmit();
   };
 
   const handleEditProfile = ({ name, avatar }) => {
     setIsLoading(true);
-    editProfile({ name, avatar })
-      .then((updateUser) => {
-        setCurrentUser(updateUser);
-        closeActiveModal();
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
+    editProfile({ name, avatar }).then((updateUser) => {
+      setCurrentUser(updateUser);
+      closeActiveModal();
+    });
+    handleSubmit();
   };
 
   const handleCardLike = ({ id, isLiked }) => {
@@ -205,9 +202,6 @@ function App() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     setCurrentUser({});
-  };
-  const openEditProfileModal = () => {
-    setActiveModal("edit-profile");
   };
 
   return (
