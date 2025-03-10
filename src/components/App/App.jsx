@@ -84,45 +84,22 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  // const onAddItem = (name, imageUrl, weather, resetForm) => {
-  //   setIsLoading(true);
-  //   addItems({ name, imageUrl, weather })
-  //     .then((newItem) => {
-  //       setClothingItems([newItem, ...clothingItems]);
-  //       closeActiveModal();
-  //       resetForm();
-  //     })
-  //     .catch(console.error)
-  //     .finally(() => setIsLoading(false));
-  // };
-
-  // function handleSubmit(request) {
-  //   setIsLoading(true);
-  //   request()
-  //     .then(handleCloseModal)
-  //     .catch(console.error)
-  //     .finally(() => setIsLoading(false));
-  // }
-
   const onLogin = ({ email, password }) => {
     setIsLoading(true);
-    login({ email, password })
-      .then((data) => {
-        localStorage.setItem("jwt", data.token);
-        handleGetUserData();
-        closeActiveModal();
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
+    login({ email, password }).then((data) => {
+      localStorage.setItem("jwt", data.token);
+      handleGetUserData();
+      closeActiveModal();
+    });
+    handleSubmit();
   };
 
   const handleDeleteCard = (id) => {
-    deleteItems(id)
-      .then(() => {
-        setClothingItems((items) => items.filter((item) => item._id !== id));
-        closeActiveModal();
-      })
-      .catch(console.error);
+    deleteItems(id).then(() => {
+      setClothingItems((items) => items.filter((item) => item._id !== id));
+      closeActiveModal();
+    });
+    handleSubmit();
   };
 
   useEffect(() => {
