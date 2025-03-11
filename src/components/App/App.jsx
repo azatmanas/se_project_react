@@ -75,34 +75,35 @@ function App() {
         setClothingItems([newItem, ...clothingItems]);
         resetForm();
       });
-
     handleSubmit(makeRequest);
   };
 
   function handleSubmit(request) {
     setIsLoading(true);
     request()
-      .then(handleCloseModal)
+      .then(closeActiveModal)
       .catch(console.error)
       .finally(() => setIsLoading(false));
   }
 
   const onLogin = ({ email, password }) => {
-    setIsLoading(true);
-    login({ email, password }).then((data) => {
-      localStorage.setItem("jwt", data.token);
-      handleGetUserData();
-      closeActiveModal();
-    });
-    handleSubmit();
+    const makeRequest = () =>
+      // setIsLoading(true);
+      login({ email, password }).then((data) => {
+        localStorage.setItem("jwt", data.token);
+        handleGetUserData();
+        closeActiveModal();
+      });
+    handleSubmit(makeRequest);
   };
 
   const handleDeleteCard = (id) => {
-    deleteItems(id).then(() => {
-      setClothingItems((items) => items.filter((item) => item._id !== id));
-      closeActiveModal();
-    });
-    handleSubmit();
+    const makeRequest = () =>
+      deleteItems(id).then(() => {
+        setClothingItems((items) => items.filter((item) => item._id !== id));
+        closeActiveModal();
+      });
+    handleSubmit(makeRequest);
   };
 
   useEffect(() => {
