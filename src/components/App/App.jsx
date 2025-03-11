@@ -88,7 +88,6 @@ function App() {
 
   const onLogin = ({ email, password }) => {
     const makeRequest = () =>
-      // setIsLoading(true);
       login({ email, password }).then((data) => {
         localStorage.setItem("jwt", data.token);
         handleGetUserData();
@@ -156,11 +155,11 @@ function App() {
   };
 
   const handleRegister = ({ name, avatar, email, password }) => {
-    setIsLoading(true);
-    register({ name, avatar, email, password }).then(() => {
-      return onLogin({ email, password });
-    });
-    handleSubmit();
+    const makeRequest = () =>
+      register({ name, avatar, email, password }).then(() => {
+        return onLogin({ email, password });
+      });
+    handleSubmit(makeRequest);
   };
 
   const handleEditProfile = ({ name, avatar }) => {
