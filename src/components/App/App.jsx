@@ -91,7 +91,6 @@ function App() {
       login({ email, password }).then((data) => {
         localStorage.setItem("jwt", data.token);
         handleGetUserData();
-        closeActiveModal();
       });
     handleSubmit(makeRequest);
   };
@@ -100,7 +99,6 @@ function App() {
     const makeRequest = () =>
       deleteItems(id).then(() => {
         setClothingItems((items) => items.filter((item) => item._id !== id));
-        closeActiveModal();
       });
     handleSubmit(makeRequest);
   };
@@ -163,12 +161,11 @@ function App() {
   };
 
   const handleEditProfile = ({ name, avatar }) => {
-    setIsLoading(true);
-    editProfile({ name, avatar }).then((updateUser) => {
-      setCurrentUser(updateUser);
-      closeActiveModal();
-    });
-    handleSubmit();
+    const makeRequest = () =>
+      editProfile({ name, avatar }).then((updateUser) => {
+        setCurrentUser(updateUser);
+      });
+    handleSubmit(makeRequest);
   };
 
   const handleCardLike = ({ id, isLiked }) => {

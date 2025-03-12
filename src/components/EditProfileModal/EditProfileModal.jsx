@@ -27,7 +27,6 @@ function EditProfileModal({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleEditProfile(values);
-    closeActiveModal();
   };
 
   return (
@@ -39,7 +38,7 @@ function EditProfileModal({
       className="modal__container"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label className="modal__label">
         Name
         <input
           type="text"
@@ -51,7 +50,7 @@ function EditProfileModal({
         />
       </label>
 
-      <label htmlFor="avatar" className="modal__label">
+      <label className="modal__label">
         Image
         <input
           type="url"
