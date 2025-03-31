@@ -1,7 +1,10 @@
-const BASE_URL = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "put the URL for your deployed backend here, including https://"
+    : "http://localhost:3001";
 import { checkResponse } from "./api";
 export const register = ({ name, avatar, email, password }) => {
-  return fetch(`${BASE_URL}/signup`, {
+  return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,7 +14,7 @@ export const register = ({ name, avatar, email, password }) => {
 };
 
 export const login = ({ email, password }) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -24,7 +27,7 @@ export const getCurrentUserInfo = (token) => {
   if (!token) {
     return Promise.reject("Token is missing");
   }
-  return fetch(`${BASE_URL}/users/me`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
