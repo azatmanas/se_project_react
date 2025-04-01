@@ -75,7 +75,7 @@ function App() {
         setClothingItems([newItem, ...clothingItems]);
         resetForm();
       });
-    handleSubmit(makeRequest);
+    // handleSubmit(makeRequest);
   };
 
   function handleSubmit(request) {
