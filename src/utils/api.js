@@ -1,6 +1,6 @@
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "put the URL for your deployed backend here, including https://"
+    ? "https://api.azatmanasson.crabdance.com"
     : "http://localhost:3001";
 const getToken = () => {
   return localStorage.getItem("jwt");
