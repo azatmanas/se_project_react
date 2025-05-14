@@ -1,4 +1,4 @@
-const baseUrl =
+export const baseUrl =
   process.env.NODE_ENV === "production"
     ? "https://api.azatmanasson.crabdance.com"
     : "http://localhost:3001";
@@ -64,5 +64,25 @@ export const editProfile = ({ name, avatar }) => {
       authorization: `Bearer ${getToken()}`,
     },
     body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+};
+
+export const signup = ({ email, password, name, avatar }) => {
+  return fetch(`${baseUrl}/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password, name, avatar }),
+  }).then(checkResponse);
+};
+
+export const signin = ({ email, password }) => {
+  return fetch(`${baseUrl}/signin`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
   }).then(checkResponse);
 };
